@@ -1,0 +1,72 @@
+============================================================================
+  RetailMart V2 Analytics — JSON Export
+  Database: capstone_test
+  Output: /tmp/capstone_json
+  Started: Sun Jun 14 23:09:56 IST 2026
+============================================================================
+  ✓ Database connection verified
+
+Exporting JSON data...
+
+[1/10] Executive...
+  ✓ executive_summary.json (     370 bytes, 27ms)
+[2/10] Sales...
+  ✓ monthly_trend.json (    8751 bytes, 28ms)
+  ✓ recent_trend.json (    5932 bytes, 328ms)
+  ✓ dayofweek.json (    1155 bytes, 148ms)
+  ✓ payment_mode.json (    1623 bytes, 163ms)
+  ✓ quarterly_sales.json (    1637 bytes, 114ms)
+  ✓ weekend_weekday.json (     305 bytes, 148ms)
+  ✓ order_status.json (    1223 bytes, 43ms)
+[3/10] Customers...
+  ✓ top_customers.json ( 11101899 bytes, 229ms)
+  ✓ clv_tiers.json (     737 bytes, 43ms)
+  ✓ rfm_segments.json (    2011 bytes, 41ms)
+  ✓ churn_risk.json ( 6679656 bytes, 244ms)
+  ✓ registration_trends.json (    5202 bytes, 38ms)
+  ✓ geography.json (   13745 bytes, 41ms)
+  ✓ loyalty_overview.json (     700 bytes, 188ms)
+[4/10] Products...
+  ✓ top_products.json ( 1415436 bytes, 46ms)
+  ✓ category_performance.json (    1773 bytes, 439ms)
+  ✓ brand_performance.json (   22045 bytes, 38ms)
+  ✓ abc_analysis.json (  105048 bytes, 27ms)
+  ✓ inventory_status.json (     298 bytes, 4252ms)
+[5/10] Stores...
+  ✓ top_stores.json (   56771 bytes, 23ms)
+  ✓ regional_performance.json (    3944 bytes, 25ms)
+  ✓ store_inventory.json (   38938 bytes, 229ms)
+  ✓ employee_distribution.json (   33691 bytes, 26ms)
+[6/10] Operations...
+  ✓ operations_summary.json (     396 bytes, 22ms)
+  ✓ delivery_performance.json (    3669 bytes, 71ms)
+  ✓ courier_comparison.json (     502 bytes, 51ms)
+  ✓ return_analysis.json (     942 bytes, 483ms)
+  ✓ pending_shipments.json ( 12296556 bytes, 338ms)
+  ✓ support_overview.json (  233130 bytes, 45ms)
+  ✓ call_center.json (    1850 bytes, 49ms)
+[7/10] Marketing...
+  ✓ marketing_summary.json (     372 bytes, 23ms)
+  ✓ campaign_performance.json (   72970 bytes, 300ms)
+  ✓ channel_performance.json (     644 bytes, 27ms)
+  ✓ email_engagement.json (   82516 bytes, 27ms)
+  ✓ web_analytics.json (   42284 bytes, 4956ms)
+[8/10] Finance & HR...
+  ✓ finance_summary.json (  103660 bytes, 38ms)
+  ✓ hr_overview.json (   59593 bytes, 326ms)
+  ✓ payroll_summary.json (    3984 bytes, 41ms)
+[9/10] Audit & Compliance...
+  ✓ audit_overview.json (  601428 bytes, 81ms)
+  ✓ api_performance.json (    4631 bytes, 77ms)
+[10/10] Supply Chain & Manufacturing...
+  ✓ supply_chain.json (   13079 bytes, 45ms)
+  ✓ manufacturing.json (  549662 bytes, 59ms)
+[Bonus] Alerts...
+  ✓ alerts.json ( 23823127 bytes, 3889ms)
+
+============================================================================
+  Export Complete!
+  Files:       44 JSON files exported
+  Total Size:  56M
+  Finished: Sun Jun 14 23:10:15 IST 2026
+============================================================================

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch 26 - RetailMart V3 - SQL Mastery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background: #0a0e17; color: #f1f5f9; font-family: 'Inter', sans-serif; min-height: 100vh; padding: 2rem; }
+        code, .mono { font-family: 'JetBrains Mono', monospace; }
+        a { color: #3b82f6; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #60a5fa; }
+        .container { max-width: 960px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.875rem; color: #94a3b8; margin-bottom: 2rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+        .breadcrumb a { color: #94a3b8; }
+        .breadcrumb a:hover { color: #3b82f6; }
+        .breadcrumb .sep { color: #475569; }
+        .back-link { display: inline-flex; align-items: center; gap: 0.5rem; color: #94a3b8; font-size: 0.875rem; margin-bottom: 1.5rem; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #1e293b; transition: all 0.2s; }
+        .back-link:hover { color: #3b82f6; border-color: #3b82f6; background: rgba(59,130,246,0.05); }
+        .back-link svg { width: 16px; height: 16px; }
+        .page-header { margin-bottom: 2.5rem; }
+        .page-header h1 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .page-header p { color: #94a3b8; font-size: 1.05rem; }
+        .badge { display: inline-block; font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 9999px; background: rgba(168,85,247,0.15); color: #c084fc; font-weight: 500; margin-left: 0.75rem; vertical-align: middle; }
+        .week-section { margin-bottom: 2.5rem; }
+        .week-header { font-size: 1.1rem; font-weight: 600; color: #e2e8f0; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; border-left: 3px solid #3b82f6; padding-left: 0.6rem; }
+        .day-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0.75rem; }
+        .day-card { background: #1a1f2e; border: 1px solid #2a3040; border-radius: 0.625rem; padding: 1rem 1.25rem; transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+        .day-card:hover { border-color: #3b82f6; transform: translateY(-1px); box-shadow: 0 2px 12px rgba(59,130,246,0.08); }
+        .day-num { font-size: 0.75rem; font-weight: 700; color: #3b82f6; background: rgba(59,130,246,0.1); padding: 0.3rem 0.5rem; border-radius: 0.375rem; font-family: 'JetBrains Mono', monospace; white-space: nowrap; min-width: 2rem; text-align: center; }
+        .day-card.pro .day-num { color: #c084fc; background: rgba(168,85,247,0.12); }
+        .day-info { flex: 1; min-width: 0; }
+        .day-title { font-size: 0.9rem; font-weight: 500; color: #f1f5f9; margin-bottom: 0.35rem; }
+        .day-files { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .day-file { display: inline-flex; align-items: center; gap: 0.25rem; font-size: 0.7rem; padding: 0.18rem 0.55rem; border-radius: 0.25rem; background: #0f1320; border: 1px solid #2a3040; color: #94a3b8; font-family: 'JetBrains Mono', monospace; transition: all 0.2s; }
+        .day-file:hover { border-color: #3b82f6; color: #60a5fa; }
+        .day-file.practice:hover { border-color: #22c55e; color: #4ade80; }
+        .day-file svg { width: 11px; height: 11px; }
+        .note { margin-top: 1rem; padding: 1.25rem; background: rgba(59,130,246,0.05); border: 1px solid rgba(59,130,246,0.2); border-radius: 0.75rem; color: #93c5fd; font-size: 0.9rem; }
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .page-header h1 { font-size: 1.5rem; }
+            .day-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../../" class="back-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+            Back to Home
+        </a>
+        <nav class="breadcrumb">
+            <a href="../../">SQL Mastery</a>
+            <span class="sep">/</span>
+            <a href="../">Batches</a>
+            <span class="sep">/</span>
+            <span>Batch 26</span>
+        </nav>
+        <div class="page-header">
+            <h1>Batch 26 <span class="badge">RetailMart V3</span></h1>
+            <p>Slides &amp; practice for the full SQL masterclass &mdash; 28 topics, a bonus session, and the capstone project.</p>
+        </div>
+
+        <!-- Foundations & Setup -->
+        <div class="week-section">
+            <div class="week-header">Foundations &amp; Setup</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">01</span><div class="day-info"><div class="day-title">Introduction to SQL &amp; Databases</div><div class="day-files"><a class="day-file" href="01-intro-to-sql.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/01-intro-to-sql">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">02</span><div class="day-info"><div class="day-title">Installation &amp; RetailMart Onboarding</div><div class="day-files"><a class="day-file" href="02-installation-onboarding.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/02-installation-onboarding">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">03</span><div class="day-info"><div class="day-title">DDL &amp; Data Types</div><div class="day-files"><a class="day-file" href="03-ddl-data-types.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/03-ddl-data-types">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">04</span><div class="day-info"><div class="day-title">Constraints, Keys &amp; DML</div><div class="day-files"><a class="day-file" href="04-constraints-dml.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/04-constraints-dml">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">05</span><div class="day-info"><div class="day-title">Filtering &amp; Sorting</div><div class="day-files"><a class="day-file" href="05-filtering-sorting.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/05-filtering-sorting">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Functions & Joins -->
+        <div class="week-section">
+            <div class="week-header">Functions &amp; Joins</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">06</span><div class="day-info"><div class="day-title">Scalar Functions (String &amp; Date)</div><div class="day-files"><a class="day-file" href="06-scalar-functions.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/06-scalar-functions">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">07</span><div class="day-info"><div class="day-title">Conditional Logic &amp; Derived Columns</div><div class="day-files"><a class="day-file" href="07-conditional-logic.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/07-conditional-logic">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">08</span><div class="day-info"><div class="day-title">Aggregate Functions &amp; Grouping</div><div class="day-files"><a class="day-file" href="08-aggregates-grouping.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/08-aggregates-grouping">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">09</span><div class="day-info"><div class="day-title">Joins Part 1 (Foundations)</div><div class="day-files"><a class="day-file" href="09-joins-part-1.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/09-joins-part-1">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">10</span><div class="day-info"><div class="day-title">Joins Part 2 (Advanced)</div><div class="day-files"><a class="day-file" href="10-joins-part-2.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/10-joins-part-2">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Subqueries, CTEs & Database Concepts -->
+        <div class="week-section">
+            <div class="week-header">Subqueries, CTEs &amp; Database Concepts</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">11</span><div class="day-info"><div class="day-title">Subqueries Part 1</div><div class="day-files"><a class="day-file" href="11-subqueries-part-1.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/11-subqueries-part-1">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">12</span><div class="day-info"><div class="day-title">Subqueries Part 2 &amp; LATERAL</div><div class="day-files"><a class="day-file" href="12-subqueries-part-2-lateral.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/12-subqueries-part-2-lateral">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">13</span><div class="day-info"><div class="day-title">Common Table Expressions (CTEs)</div><div class="day-files"><a class="day-file" href="13-ctes.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/13-ctes">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">14</span><div class="day-info"><div class="day-title">Database Concepts (Normalization &amp; ACID)</div><div class="day-files"><a class="day-file" href="14-database-concepts.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/14-database-concepts">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">15</span><div class="day-info"><div class="day-title">Subqueries &amp; CTEs Combined Review</div><div class="day-files"><a class="day-file" href="15-subqueries-ctes-combined.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/15-subqueries-ctes-combined">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Window Functions & Performance -->
+        <div class="week-section">
+            <div class="week-header">Window Functions &amp; Performance</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">16</span><div class="day-info"><div class="day-title">Window Functions Part 1 (Ranking)</div><div class="day-files"><a class="day-file" href="16-window-functions-part-1.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/16-window-functions-part-1">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">17</span><div class="day-info"><div class="day-title">Window Functions Part 2 (Frames)</div><div class="day-files"><a class="day-file" href="17-window-functions-part-2.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/17-window-functions-part-2">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">18</span><div class="day-info"><div class="day-title">Window Functions Part 3 (LAG/LEAD)</div><div class="day-files"><a class="day-file" href="18-window-functions-part-3.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/18-window-functions-part-3">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">19</span><div class="day-info"><div class="day-title">Reading Query Plans</div><div class="day-files"><a class="day-file" href="19-reading-query-plans.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/19-reading-query-plans">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">20</span><div class="day-info"><div class="day-title">Indexing for Analysts</div><div class="day-files"><a class="day-file" href="20-indexing-for-analysts.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/20-indexing-for-analysts">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Advanced Analytics -->
+        <div class="week-section">
+            <div class="week-header">Advanced Analytics</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">21</span><div class="day-info"><div class="day-title">Pivoting, Unpivoting &amp; FILTER</div><div class="day-files"><a class="day-file" href="21-pivoting-unpivoting-filter.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/21-pivoting-unpivoting-filter">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">22</span><div class="day-info"><div class="day-title">Median, Percentiles &amp; DISTINCT ON</div><div class="day-files"><a class="day-file" href="22-median-percentiles-distinct-on.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/22-median-percentiles-distinct-on">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">23</span><div class="day-info"><div class="day-title">Date/Time for Time-Series</div><div class="day-files"><a class="day-file" href="23-datetime-timeseries.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/23-datetime-timeseries">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">24</span><div class="day-info"><div class="day-title">JSON &amp; Semi-Structured Data</div><div class="day-files"><a class="day-file" href="24-json-semi-structured.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/24-json-semi-structured">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">25</span><div class="day-info"><div class="day-title">Views &amp; Materialized Views</div><div class="day-files"><a class="day-file" href="25-views-materialized-views.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/25-views-materialized-views">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Analyst Patterns & Interview Prep -->
+        <div class="week-section">
+            <div class="week-header">Analyst Patterns &amp; Interview Prep</div>
+            <div class="day-grid">
+                <div class="day-card"><span class="day-num">26</span><div class="day-info"><div class="day-title">Data Quality &amp; Deduplication</div><div class="day-files"><a class="day-file" href="26-data-quality-dedup.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/26-data-quality-dedup">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">27</span><div class="day-info"><div class="day-title">Cohort Analysis, RFM &amp; Funnels</div><div class="day-files"><a class="day-file" href="27-cohort-rfm-funnel.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/27-cohort-rfm-funnel">Practice</a></div></div></div>
+                <div class="day-card"><span class="day-num">28</span><div class="day-info"><div class="day-title">Review &amp; Interview Prep</div><div class="day-files"><a class="day-file" href="28-review-interview-prep.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/practice/retailmart_v3/28-review-interview-prep">Practice</a></div></div></div>
+            </div>
+        </div>
+
+        <!-- Bonus & Capstone -->
+        <div class="week-section">
+            <div class="week-header">Bonus &amp; Capstone</div>
+            <div class="day-grid">
+                <div class="day-card pro"><span class="day-num">&#9733;</span><div class="day-info"><div class="day-title">Bonus: DISTINCT ON, Stored Procedures &amp; Triggers</div><div class="day-files"><a class="day-file" href="bonus-distinct-procedures-triggers.pdf">PDF</a></div></div></div>
+                <div class="day-card pro"><span class="day-num">&#9733;</span><div class="day-info"><div class="day-title">Capstone: RetailMart Analytics Platform</div><div class="day-files"><a class="day-file" href="capstone-retailmart-analytics.pdf">PDF</a><a class="day-file practice" href="https://github.com/starlordali4444/PostgreSql/tree/main/site/batches/26/retailmart_analytics">Project</a></div></div></div>
+            </div>
+        </div>
+
+        <div class="note">
+            Slides (PDF) are shared after each class. Practice links open the four-tier question sets (Easy &middot; Medium &middot; Hard &middot; Crazy) on GitHub.
+        </div>
+    </div>
+</body>
+</html>
