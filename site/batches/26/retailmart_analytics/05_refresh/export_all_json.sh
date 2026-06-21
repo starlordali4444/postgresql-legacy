@@ -24,7 +24,7 @@ set -e
 # Configuration
 # Point this at YOUR RetailMart V3 database. Either export PGDATABASE
 # (e.g. export PGDATABASE=accio_retailmart_26) or replace NN below with your batch number.
-DB_NAME="${PGDATABASE:-accio_retailmart_NN}"
+DB_NAME="${PGDATABASE:-accio_retailmart_26}"
 DB_USER="${PGUSER:-postgres}"
 OUTPUT_DIR="${2:-${1:-./06_dashboard/data}}"
 LOG_DIR="./05_refresh/logs"
