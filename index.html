@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PostgreSQL Course — Archive (Batches 21–26)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
         :root{
@@ -14,53 +14,103 @@
             --accent:#3b82f6; --accent2:#60a5fa; --green:#22c55e; --orange:#f59e0b; --purple:#a855f7;
         }
         html{scroll-behavior:smooth;}
-        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;}
+        body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden;}
         a{color:inherit;text-decoration:none;}
         .wrap{max-width:1080px;margin:0 auto;padding:0 1.5rem;}
 
-        header{border-bottom:1px solid var(--border);background:rgba(10,14,23,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;}
+        /* cursor trail */
+        #cursorCanvas{position:fixed;inset:0;pointer-events:none;z-index:9999;}
+
+        header{border-bottom:1px solid var(--border);background:rgba(10,14,23,0.8);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10;transition:box-shadow .3s;}
+        header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,0.35);}
         .nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 0;}
         .brand{font-weight:800;font-size:1.1rem;letter-spacing:-0.02em;}
         .brand .sql{color:var(--accent);}
         .back{font-size:0.85rem;font-weight:600;color:var(--accent2);border:1px solid var(--border);padding:0.5rem 0.9rem;border-radius:8px;transition:all .2s;}
-        .back:hover{background:var(--card-hover);border-color:var(--accent);}
+        .back:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-1px);}
 
-        .hero{padding:4rem 0 2.5rem;}
+        /* hero */
+        .hero{position:relative;padding:4.5rem 0 2.5rem;overflow:hidden;}
+        .hero-glow{position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(circle,rgba(59,130,246,0.14) 0%,rgba(168,85,247,0.07) 40%,transparent 70%);pointer-events:none;}
+        .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,0.04) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(circle at 50% 30%,#000,transparent 75%);pointer-events:none;}
+        .hero-inner{position:relative;}
         .badge{display:inline-block;font-size:0.72rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--orange);background:rgba(245,158,11,0.1);border:1px solid rgba(245,158,11,0.25);padding:0.35rem 0.75rem;border-radius:999px;margin-bottom:1.1rem;}
-        h1{font-size:2.6rem;font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;}
+        h1{font-size:2.7rem;font-weight:900;letter-spacing:-0.03em;line-height:1.1;margin-bottom:1rem;}
+        h1 .grad{background:linear-gradient(135deg,#60a5fa,#a855f7);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
         .hero p{color:var(--text2);max-width:680px;font-size:1.05rem;}
 
-        .section{padding:2.5rem 0;border-top:1px solid var(--border);}
+        /* stats */
+        .stats{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2rem;}
+        .stat{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:14px;padding:1rem 1.4rem;min-width:140px;transition:all .2s;}
+        .stat:hover{border-color:var(--accent);background:rgba(59,130,246,0.05);transform:translateY(-3px);}
+        .stat-num{font-size:1.9rem;font-weight:900;font-family:'JetBrains Mono',monospace;color:var(--accent2);}
+        .stat:nth-child(2) .stat-num{color:var(--purple);}
+        .stat:nth-child(3) .stat-num{color:var(--green);}
+        .stat-label{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--muted);margin-top:0.2rem;}
+
+        /* marquee strip */
+        .strip-wrap{margin:2.5rem 0 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015);}
+        .strip{display:flex;gap:0.7rem;overflow-x:hidden;padding:0.9rem 1.5rem;white-space:nowrap;}
+        .chip{flex:none;font-size:0.78rem;font-weight:600;font-family:'JetBrains Mono',monospace;color:var(--text2);background:var(--bg2);border:1px solid var(--border);padding:0.35rem 0.8rem;border-radius:999px;}
+
+        .section{padding:2.8rem 0;border-top:1px solid var(--border);}
+        .section:first-of-type{border-top:none;}
         .section-title{font-size:1.4rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:0.4rem;}
         .section-desc{color:var(--text2);margin-bottom:1.5rem;font-size:0.95rem;}
         .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1rem;}
-        .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:all .2s;display:block;}
-        .card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-2px);}
+        .card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:all .25s;display:block;}
+        .card:hover{background:var(--card-hover);border-color:var(--accent);transform:translateY(-4px);box-shadow:0 12px 30px rgba(0,0,0,0.3);}
         .card h3{font-size:1.05rem;font-weight:700;margin-bottom:0.3rem;display:flex;align-items:center;gap:0.4rem;}
         .card p{color:var(--text2);font-size:0.88rem;}
         .card .meta{display:inline-block;margin-top:0.7rem;font-size:0.72rem;font-weight:600;color:var(--muted);background:var(--bg2);padding:0.25rem 0.6rem;border-radius:6px;}
         .v1{color:var(--purple);} .v2{color:var(--orange);} .v3{color:var(--green);}
 
+        /* scroll reveal */
+        .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+        .reveal.visible{opacity:1;transform:none;}
+
         footer{border-top:1px solid var(--border);padding:2.5rem 0;text-align:center;color:var(--muted);font-size:0.85rem;}
         footer a{color:var(--accent2);font-weight:600;}
+        @media (max-width:640px){h1{font-size:2rem;}}
+        @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
     </style>
 </head>
 <body>
-<header>
+<canvas id="cursorCanvas"></canvas>
+<header id="mainNav">
     <div class="wrap nav">
         <div class="brand"><span class="sql">SQL</span> Mastery — Archive</div>
         <a class="back" href="https://starlordali4444.github.io/postgresql/">← Active course site</a>
     </div>
 </header>
 
-<div class="wrap">
-    <div class="hero">
+<div class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+    <div class="wrap hero-inner">
         <span class="badge">Legacy Archive</span>
-        <h1>PostgreSQL Course — Past Cohorts</h1>
+        <h1>PostgreSQL Course — <span class="grad">Past Cohorts</span></h1>
         <p>Archived materials from batches 21–26 and earlier dataset versions. The active, current course (batch 27 onward) lives on the <a href="https://starlordali4444.github.io/postgresql/" style="color:var(--accent2);font-weight:600">main site</a>.</p>
+        <div class="stats">
+            <div class="stat"><div class="stat-num" data-count="6">0</div><div class="stat-label">Cohorts archived</div></div>
+            <div class="stat"><div class="stat-num" data-count="2">0</div><div class="stat-label">Dataset versions</div></div>
+            <div class="stat"><div class="stat-num" data-count="3">0</div><div class="stat-label">SQL dialects</div></div>
+        </div>
     </div>
+</div>
 
-    <div class="section">
+<div class="strip-wrap">
+    <div class="strip" id="strip">
+        <span class="chip">Batch 21</span><span class="chip">Batch 22</span><span class="chip">Batch 23</span>
+        <span class="chip">Batch 24</span><span class="chip">Batch 25</span><span class="chip">Batch 26</span>
+        <span class="chip">RetailMart V1</span><span class="chip">RetailMart V2</span>
+        <span class="chip">PostgreSQL</span><span class="chip">MSSQL</span><span class="chip">MySQL</span>
+        <span class="chip">Curriculum v1</span><span class="chip">Curriculum v2</span><span class="chip">Curriculum v3</span>
+    </div>
+</div>
+
+<div class="wrap">
+    <div class="section reveal">
         <h2 class="section-title">Past Cohorts</h2>
         <p class="section-desc">Each batch's decks, sheets, and capstone dashboards as delivered.</p>
         <div class="grid">
@@ -73,7 +123,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section reveal">
         <h2 class="section-title">Datasets</h2>
         <p class="section-desc">Earlier RetailMart dataset versions (CSV + SQL setup). The current V3 dataset is on the main site.</p>
         <div class="grid">
@@ -82,7 +132,7 @@
         </div>
     </div>
 
-    <div class="section">
+    <div class="section reveal">
         <h2 class="section-title">Reference</h2>
         <p class="section-desc">Pre-PostgreSQL notes and earlier curriculum specifications.</p>
         <div class="grid">
@@ -97,5 +147,78 @@
 <footer>
     <div class="wrap">Built by Sayyed Siraj Ali · PostgreSQL · Archive of batches 21–26 · <a href="https://starlordali4444.github.io/postgresql/">Back to the active course →</a></div>
 </footer>
+
+<script>
+    // animated counters
+    function animateCounters(){
+        document.querySelectorAll('[data-count]').forEach(el=>{
+            if(el.dataset.animated)return;
+            const rect=el.getBoundingClientRect();
+            if(rect.top>window.innerHeight||rect.bottom<0)return;
+            el.dataset.animated='1';
+            const target=parseInt(el.dataset.count);
+            const dur=1200,start=performance.now();
+            function tick(now){
+                const p=Math.min((now-start)/dur,1);
+                const eased=1-Math.pow(1-p,3);
+                el.textContent=Math.floor(target*eased).toLocaleString();
+                if(p<1)requestAnimationFrame(tick);else el.textContent=target.toLocaleString();
+            }
+            requestAnimationFrame(tick);
+        });
+    }
+    // scroll reveal
+    function revealOnScroll(){
+        document.querySelectorAll('.reveal').forEach(el=>{
+            if(el.getBoundingClientRect().top<window.innerHeight-80)el.classList.add('visible');
+        });
+        animateCounters();
+    }
+    function handleNavScroll(){document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>50);}
+    // auto-scroll marquee
+    function autoScrollStrip(){
+        const strip=document.getElementById('strip');
+        if(!strip)return;
+        let pos=0,speed=0.5;
+        function loop(){
+            pos+=speed;
+            if(pos>=strip.scrollWidth-strip.clientWidth)pos=0;
+            strip.scrollLeft=pos;
+            requestAnimationFrame(loop);
+        }
+        loop();
+        strip.addEventListener('mouseenter',()=>speed=0);
+        strip.addEventListener('mouseleave',()=>speed=0.5);
+    }
+    window.addEventListener('scroll',()=>{revealOnScroll();handleNavScroll();},{passive:true});
+    window.addEventListener('load',()=>{revealOnScroll();handleNavScroll();setTimeout(animateCounters,100);autoScrollStrip();});
+
+    // cursor trail
+    (function(){
+        const canvas=document.getElementById('cursorCanvas');
+        const ctx=canvas.getContext('2d');
+        let w,h;const particles=[];
+        const colors=['#3b82f6','#a855f7','#06b6d4','#60a5fa','#818cf8'];
+        let mouse={x:-100,y:-100},lastMouse={x:-100,y:-100};
+        function resize(){w=canvas.width=window.innerWidth;h=canvas.height=window.innerHeight;}
+        resize();window.addEventListener('resize',resize);
+        document.addEventListener('mousemove',e=>{mouse.x=e.clientX;mouse.y=e.clientY;});
+        class Particle{
+            constructor(x,y){this.x=x;this.y=y;this.vx=(Math.random()-0.5)*2;this.vy=(Math.random()-0.5)*2;this.life=1;this.decay=0.015+Math.random()*0.02;this.size=2+Math.random()*3;this.color=colors[Math.floor(Math.random()*colors.length)];}
+            update(){this.x+=this.vx;this.y+=this.vy;this.life-=this.decay;this.size*=0.97;}
+            draw(){ctx.globalAlpha=this.life*0.6;ctx.fillStyle=this.color;ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}
+        }
+        function animate(){
+            ctx.clearRect(0,0,w,h);
+            const dx=mouse.x-lastMouse.x,dy=mouse.y-lastMouse.y,dist=Math.sqrt(dx*dx+dy*dy);
+            if(dist>2){const count=Math.min(Math.floor(dist/4),5);for(let i=0;i<count;i++){particles.push(new Particle(mouse.x+(Math.random()-0.5)*8,mouse.y+(Math.random()-0.5)*8));}}
+            lastMouse.x=mouse.x;lastMouse.y=mouse.y;
+            for(let i=particles.length-1;i>=0;i--){particles[i].update();if(particles[i].life<=0||particles[i].size<0.3)particles.splice(i,1);else particles[i].draw();}
+            if(particles.length>200)particles.splice(0,particles.length-200);
+            ctx.globalAlpha=1;requestAnimationFrame(animate);
+        }
+        animate();
+    })();
+</script>
 </body>
 </html>
