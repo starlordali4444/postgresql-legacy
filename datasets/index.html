@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Datasets - SQL Mastery Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0e17;color:#f1f5f9;font-family:'Inter',sans-serif;min-height:100vh;padding:2rem;}
+a{color:#3b82f6;text-decoration:none;} a:hover{color:#60a5fa;}
+.container{max-width:900px;margin:0 auto;}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;color:#94a3b8;font-size:0.875rem;margin-bottom:1.5rem;padding:0.5rem 1rem;border-radius:0.5rem;border:1px solid #1e293b;}
+.back-link:hover{color:#3b82f6;border-color:#3b82f6;} .back-link svg{width:16px;height:16px;}
+.breadcrumb{font-size:0.875rem;color:#94a3b8;margin-bottom:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;}
+.breadcrumb .sep{color:#475569;}
+.page-header{margin-bottom:2rem;}
+.page-header h1{font-size:2rem;font-weight:700;margin-bottom:0.5rem;}
+.page-header p{color:#94a3b8;font-size:1.05rem;}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.25rem;}
+.card{background:#1a1f2e;border:1px solid #2a3040;border-radius:0.75rem;padding:1.5rem;transition:all 0.25s ease;}
+.card:hover{border-color:#3b82f6;transform:translateY(-2px);box-shadow:0 4px 20px rgba(59,130,246,0.1);}
+.card h3{font-size:1.1rem;font-weight:600;color:#f1f5f9;margin-bottom:0.4rem;}
+.card p{color:#94a3b8;font-size:0.875rem;margin-bottom:1rem;}
+.actions{display:flex;gap:0.5rem;flex-wrap:wrap;}
+.btn{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.8rem;font-weight:600;padding:0.5rem 0.9rem;border-radius:0.5rem;border:1px solid #2a3040;color:#cbd5e1;}
+.btn:hover{border-color:#3b82f6;color:#fff;}
+.btn-dl{background:#3b82f6;color:#fff;border-color:#3b82f6;} .btn-dl:hover{background:#2563eb;color:#fff;}
+.btn svg{width:14px;height:14px;}
+.meta{display:inline-block;margin-top:0.8rem;font-size:0.72rem;font-weight:600;color:#64748b;background:#0f1521;padding:0.2rem 0.55rem;border-radius:6px;}
+@media(max-width:640px){body{padding:1rem;}.cards{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<div class="container">
+    <a href="../" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Back to Archive</a>
+    <nav class="breadcrumb"><a href="../">SQL Mastery Archive</a> <span class="sep">/</span> <span>Datasets</span></nav>
+    <div class="page-header">
+        <h1>Archived Datasets</h1>
+        <p>Earlier RetailMart dataset versions. The current V3 dataset lives on the <a href="https://starlordali4444.github.io/postgresql/">active course site</a>.</p>
+    </div>
+    <div class="cards">
+        <div class="card">
+            <h3>RetailMart V1</h3>
+            <p>8 schemas, 28 tables &mdash; used by batches 21-23.</p>
+            <div class="actions">
+                <a class="btn" href="v1/csv/">Browse CSV</a>
+                <a class="btn" href="v1/sql/">SQL setup</a>
+                <a class="btn btn-dl" href="https://github.com/starlordali4444/postgresql-legacy/releases/download/archive-bundles/retailmart-v1-dataset.zip" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> ZIP</a>
+            </div>
+            <span class="meta">RetailMart V1</span>
+        </div>
+        <div class="card">
+            <h3>RetailMart V2</h3>
+            <p>16 schemas, 47 tables &mdash; used by batches 24-25.</p>
+            <div class="actions">
+                <a class="btn" href="v2/csv/">Browse CSV</a>
+                <a class="btn" href="v2/sql/">SQL setup</a>
+                <a class="btn btn-dl" href="https://github.com/starlordali4444/postgresql-legacy/releases/download/archive-bundles/retailmart-v2-dataset.zip" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> ZIP</a>
+            </div>
+            <span class="meta">RetailMart V2</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

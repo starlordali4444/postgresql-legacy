@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RetailMart V2 - CSV Files - SQL Mastery Archive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+body{background:#0a0e17;color:#f1f5f9;font-family:'Inter',sans-serif;min-height:100vh;padding:2rem;}
+a{color:#3b82f6;text-decoration:none;} a:hover{color:#60a5fa;}
+.container{max-width:1000px;margin:0 auto;}
+.back-link{display:inline-flex;align-items:center;gap:0.5rem;color:#94a3b8;font-size:0.875rem;margin-bottom:1.5rem;padding:0.5rem 1rem;border-radius:0.5rem;border:1px solid #1e293b;}
+.back-link:hover{color:#3b82f6;border-color:#3b82f6;}
+.back-link svg{width:16px;height:16px;}
+.page-header{margin-bottom:1.25rem;}
+.page-header h1{font-size:1.9rem;font-weight:700;margin-bottom:0.4rem;}
+.page-header p{color:#94a3b8;}
+.dl-all{display:inline-flex;align-items:center;gap:0.5rem;background:#3b82f6;color:#fff;font-weight:600;padding:0.6rem 1.1rem;border-radius:0.6rem;margin-bottom:2rem;}
+.dl-all:hover{background:#2563eb;color:#fff;} .dl-all svg{width:16px;height:16px;}
+.schema-group{margin-bottom:1.5rem;}
+.schema-group h2{font-size:0.95rem;color:#60a5fa;margin-bottom:0.6rem;font-family:'JetBrains Mono',monospace;}
+.file-list{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:0.5rem;}
+.file-row{display:flex;align-items:center;justify-content:space-between;gap:0.5rem;padding:0.5rem 0.8rem;background:#1a1f2e;border:1px solid #2a3040;border-radius:0.5rem;}
+.file-row .fn{font-size:0.8rem;color:#cbd5e1;font-family:'JetBrains Mono',monospace;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.file-acts{display:flex;gap:0.3rem;flex:none;}
+.file-acts a{display:flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid #2a3040;border-radius:6px;color:#94a3b8;background:#0f1521;}
+.file-acts a:hover{color:#fff;border-color:#3b82f6;}
+.file-acts svg{width:13px;height:13px;}
+@media(max-width:640px){body{padding:1rem;}.file-list{grid-template-columns:1fr;}}
+</style></head><body><div class="container">
+    <a href="../" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> Back to V2 dataset</a>
+    <div class="page-header"><h1>RetailMart V2 - CSV Files</h1><p>Batches 24-25 dataset (CSV) &mdash; 47 files.</p></div>
+    <a class="dl-all" href="https://github.com/starlordali4444/postgresql-legacy/releases/download/archive-bundles/retailmart-v2-dataset.zip" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg> Download all (ZIP)</a>
+        <div class="schema-group">
+            <h2>audit</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">api_requests.csv</span><span class="file-acts"><a href="audit/api_requests.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">application_logs.csv</span><span class="file-acts"><a href="audit/application_logs.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">record_changes.csv</span><span class="file-acts"><a href="audit/record_changes.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>call_center</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">calls.csv</span><span class="file-acts"><a href="call_center/calls.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">transcripts.csv</span><span class="file-acts"><a href="call_center/transcripts.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>core</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">dim_brand.csv</span><span class="file-acts"><a href="core/dim_brand.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">dim_category.csv</span><span class="file-acts"><a href="core/dim_category.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">dim_date.csv</span><span class="file-acts"><a href="core/dim_date.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">dim_department.csv</span><span class="file-acts"><a href="core/dim_department.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">dim_expense_category.csv</span><span class="file-acts"><a href="core/dim_expense_category.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">dim_region.csv</span><span class="file-acts"><a href="core/dim_region.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>customers</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">addresses.csv</span><span class="file-acts"><a href="customers/addresses.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">customers.csv</span><span class="file-acts"><a href="customers/customers.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">loyalty_points.csv</span><span class="file-acts"><a href="customers/loyalty_points.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">reviews.csv</span><span class="file-acts"><a href="customers/reviews.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>finance</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">expenses.csv</span><span class="file-acts"><a href="finance/expenses.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">revenue_summary.csv</span><span class="file-acts"><a href="finance/revenue_summary.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>hr</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">attendance.csv</span><span class="file-acts"><a href="hr/attendance.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">salary_history.csv</span><span class="file-acts"><a href="hr/salary_history.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>loyalty</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">members.csv</span><span class="file-acts"><a href="loyalty/members.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">redemptions.csv</span><span class="file-acts"><a href="loyalty/redemptions.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">tiers.csv</span><span class="file-acts"><a href="loyalty/tiers.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>manufacture</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">production_lines.csv</span><span class="file-acts"><a href="manufacture/production_lines.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">work_orders.csv</span><span class="file-acts"><a href="manufacture/work_orders.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>marketing</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">ads_spend.csv</span><span class="file-acts"><a href="marketing/ads_spend.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">campaigns.csv</span><span class="file-acts"><a href="marketing/campaigns.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">email_clicks.csv</span><span class="file-acts"><a href="marketing/email_clicks.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>payroll</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">pay_slips.csv</span><span class="file-acts"><a href="payroll/pay_slips.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">tax_brackets.csv</span><span class="file-acts"><a href="payroll/tax_brackets.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>products</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">inventory.csv</span><span class="file-acts"><a href="products/inventory.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">products.csv</span><span class="file-acts"><a href="products/products.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">promotions.csv</span><span class="file-acts"><a href="products/promotions.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">suppliers.csv</span><span class="file-acts"><a href="products/suppliers.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>sales</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">order_items.csv</span><span class="file-acts"><a href="sales/order_items.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">orders.csv</span><span class="file-acts"><a href="sales/orders.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">payments.csv</span><span class="file-acts"><a href="sales/payments.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">returns.csv</span><span class="file-acts"><a href="sales/returns.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">shipments.csv</span><span class="file-acts"><a href="sales/shipments.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>stores</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">employees.csv</span><span class="file-acts"><a href="stores/employees.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">expenses.csv</span><span class="file-acts"><a href="stores/expenses.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">stores.csv</span><span class="file-acts"><a href="stores/stores.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>supply_chain</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">inventory_snapshots.csv</span><span class="file-acts"><a href="supply_chain/inventory_snapshots.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">shipments.csv</span><span class="file-acts"><a href="supply_chain/shipments.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">warehouses.csv</span><span class="file-acts"><a href="supply_chain/warehouses.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>support</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">tickets.csv</span><span class="file-acts"><a href="support/tickets.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+        <div class="schema-group">
+            <h2>web_events</h2>
+            <ul class="file-list">
+                <li class="file-row"><span class="fn">events.csv</span><span class="file-acts"><a href="web_events/events.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+                <li class="file-row"><span class="fn">page_views.csv</span><span class="file-acts"><a href="web_events/page_views.csv" download title="Download"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></a></span></li>
+            </ul>
+        </div>
+</div></body></html>
