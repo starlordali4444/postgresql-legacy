@@ -73,6 +73,32 @@
         footer a{color:var(--accent2);font-weight:600;}
         @media (max-width:640px){h1{font-size:2rem;}}
         @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
+
+        /* access gate */
+        .nav-actions{display:flex;align-items:center;gap:0.6rem;}
+        .code-btn{font-size:0.85rem;font-weight:600;color:var(--accent);background:rgba(59,130,246,0.15);border:1px solid rgba(59,130,246,0.3);padding:0.5rem 0.9rem;border-radius:8px;cursor:pointer;font-family:inherit;}
+        .code-btn:hover{background:rgba(59,130,246,0.25);}
+        .code-btn.granted{color:var(--green);background:rgba(34,197,94,0.15);border-color:rgba(34,197,94,0.3);}
+        .card.locked{opacity:0.6;}
+        .card.locked .meta::after{content:" · locked";color:var(--orange);}
+        .overlay{position:fixed;inset:0;background:rgba(0,0,0,0.72);backdrop-filter:blur(4px);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;}
+        .overlay.show{display:flex;}
+        .modal{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.75rem;max-width:420px;width:100%;position:relative;}
+        .modal h3{font-size:1.2rem;margin-bottom:0.3rem;}
+        .modal p{color:var(--text2);font-size:0.9rem;margin-bottom:1rem;}
+        .modal input{width:100%;background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:0.65rem 0.8rem;color:var(--text);font-size:0.9rem;margin-bottom:0.6rem;font-family:inherit;}
+        .modal .row{display:flex;gap:0.5rem;}
+        .modal .row input{margin-bottom:0;}
+        .modal button.go{background:var(--accent);color:#fff;font-weight:600;border:none;border-radius:8px;padding:0.65rem 1rem;cursor:pointer;font-family:inherit;white-space:nowrap;}
+        .modal button.go:hover{background:#2563eb;}
+        .modal .close{position:absolute;top:0.7rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer;line-height:1;}
+        .status{font-size:0.85rem;margin-top:0.5rem;min-height:1.2em;}
+        .status.ok{color:var(--green);} .status.err{color:#f87171;}
+        .divider{text-align:center;color:var(--muted);font-size:0.8rem;margin:1.1rem 0 0.7rem;}
+        .req-wa{display:flex;align-items:center;justify-content:center;gap:0.5rem;width:100%;background:#22c55e;color:#fff;font-weight:700;padding:0.65rem;border-radius:10px;margin-bottom:0.6rem;}
+        .req-form{display:none;} .req-form.show{display:block;}
+        .req-toggle{width:100%;background:none;border:1px dashed var(--border);color:var(--text2);padding:0.6rem;border-radius:8px;cursor:pointer;font-size:0.85rem;font-family:inherit;}
+        .req-toggle:hover{border-color:var(--accent);color:var(--text);}
     </style>
 </head>
 <body>
@@ -80,9 +106,38 @@
 <header id="mainNav">
     <div class="wrap nav">
         <div class="brand"><span class="sql">SQL</span> Mastery — Archive</div>
-        <a class="back" href="https://starlordali4444.github.io/postgresql/">← Active course site</a>
+        <div class="nav-actions">
+            <a class="back" href="https://starlordali4444.github.io/postgresql/">← Active site</a>
+            <button class="code-btn" id="codeBtn" onclick="toggleModal()">Enter Code</button>
+        </div>
     </div>
 </header>
+
+<div class="overlay" id="overlay" onclick="if(event.target===this)toggleModal()">
+    <div class="modal">
+        <button class="close" onclick="toggleModal()">&times;</button>
+        <h3>Archive Access</h3>
+        <p>Enter your access code to unlock the legacy archive (past-cohort decks, datasets &amp; references).</p>
+        <div class="row">
+            <input type="text" id="code" placeholder="Access code..." onkeydown="if(event.key==='Enter')checkAccess()" autocomplete="off" spellcheck="false">
+            <button class="go" onclick="checkAccess()">Unlock</button>
+        </div>
+        <div class="status" id="status"></div>
+        <div class="divider">— or —</div>
+        <button class="req-toggle" onclick="document.getElementById('reqForm').classList.toggle('show')">Don't have a code? Request access</button>
+        <div class="req-form" id="reqForm" style="margin-top:0.7rem;">
+            <a class="req-wa" href="https://wa.me/918840235103?text=Hi%20Siraj%2C%20I%27d%20like%20access%20to%20the%20legacy%20archive." target="_blank" rel="noopener">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.821 11.821 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.748-.985zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+                Get code on WhatsApp
+            </a>
+            <input type="text" id="rName" placeholder="Your name">
+            <input type="email" id="rEmail" placeholder="your@email.com">
+            <input type="text" id="rBatch" placeholder="Which batch were you in? (e.g. 23)">
+            <button class="go" style="width:100%" onclick="submitRequest()">Send request</button>
+            <div class="status" id="rStatus"></div>
+        </div>
+    </div>
+</div>
 
 <div class="hero">
     <div class="hero-glow"></div>
@@ -114,12 +169,12 @@
         <h2 class="section-title">Past Cohorts</h2>
         <p class="section-desc">Each batch's decks, sheets, and capstone dashboards as delivered.</p>
         <div class="grid">
-            <a class="card" href="batches/21/"><h3>Batch 21</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
-            <a class="card" href="batches/22/"><h3>Batch 22</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
-            <a class="card" href="batches/23/"><h3>Batch 23</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
-            <a class="card" href="batches/24/"><h3>Batch 24</h3><p>Full 6-week deliverables</p><span class="meta v2">RetailMart V2</span></a>
-            <a class="card" href="batches/25/"><h3>Batch 25</h3><p>Full 6-week deliverables</p><span class="meta v2">RetailMart V2</span></a>
-            <a class="card" href="batches/26/"><h3>Batch 26</h3><p>Decks, sheets &amp; analytics capstone</p><span class="meta v3">RetailMart V3</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/21/"><h3>Batch 21</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/22/"><h3>Batch 22</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/23/"><h3>Batch 23</h3><p>Full 6-week deliverables</p><span class="meta v1">RetailMart V1</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/24/"><h3>Batch 24</h3><p>Full 6-week deliverables</p><span class="meta v2">RetailMart V2</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/25/"><h3>Batch 25</h3><p>Full 6-week deliverables</p><span class="meta v2">RetailMart V2</span></a>
+            <a class="card gated locked" data-gate="any" href="batches/26/"><h3>Batch 26</h3><p>Decks, sheets &amp; analytics capstone</p><span class="meta v3">RetailMart V3</span></a>
         </div>
     </div>
 
@@ -127,8 +182,8 @@
         <h2 class="section-title">Datasets</h2>
         <p class="section-desc">Earlier RetailMart dataset versions (CSV + SQL setup). The current V3 dataset is on the main site.</p>
         <div class="grid">
-            <a class="card" href="datasets/v1/"><h3>RetailMart V1</h3><p>8 schemas, 28 tables</p><span class="meta v1">Batches 21–23</span></a>
-            <a class="card" href="datasets/v2/"><h3>RetailMart V2</h3><p>16 schemas, 47 tables</p><span class="meta v2">Batches 24–25</span></a>
+            <a class="card gated locked" data-gate="any" href="datasets/v1/"><h3>RetailMart V1</h3><p>8 schemas, 28 tables</p><span class="meta v1">Batches 21–23</span></a>
+            <a class="card gated locked" data-gate="any" href="datasets/v2/"><h3>RetailMart V2</h3><p>16 schemas, 47 tables</p><span class="meta v2">Batches 24–25</span></a>
         </div>
     </div>
 
@@ -136,10 +191,10 @@
         <h2 class="section-title">Reference</h2>
         <p class="section-desc">Pre-PostgreSQL notes and earlier curriculum specifications.</p>
         <div class="grid">
-            <a class="card" href="legacy/"><h3>MSSQL / MySQL Notes</h3><p>Pre-PostgreSQL reference decks</p><span class="meta">Legacy</span></a>
-            <a class="card" href="curriculum/SQL_Curriculum_v1.pdf"><h3>Curriculum v1</h3><p>Original course spec</p><span class="meta">PDF</span></a>
-            <a class="card" href="curriculum/SQL_Curriculum_v2.pdf"><h3>Curriculum v2</h3><p>Revised course spec</p><span class="meta">PDF</span></a>
-            <a class="card" href="curriculum/SQL_Curriculum_v3.md"><h3>Curriculum v3</h3><p>Pre-v4 course spec</p><span class="meta">Markdown</span></a>
+            <a class="card gated locked" data-gate="any" href="legacy/"><h3>MSSQL / MySQL Notes</h3><p>Pre-PostgreSQL reference decks</p><span class="meta">Legacy</span></a>
+            <a class="card gated locked" data-gate="any" href="curriculum/SQL_Curriculum_v1.pdf"><h3>Curriculum v1</h3><p>Original course spec</p><span class="meta">PDF</span></a>
+            <a class="card gated locked" data-gate="any" href="curriculum/SQL_Curriculum_v2.pdf"><h3>Curriculum v2</h3><p>Revised course spec</p><span class="meta">PDF</span></a>
+            <a class="card gated locked" data-gate="any" href="curriculum/SQL_Curriculum_v3.md"><h3>Curriculum v3</h3><p>Pre-v4 course spec</p><span class="meta">Markdown</span></a>
         </div>
     </div>
 </div>
@@ -149,6 +204,109 @@
 </footer>
 
 <script>
+    // ── ACCESS GATE (legacy archive — separate code from the active course) ──
+    const ACCESS_EXPIRY_DAYS = 30;
+    const ACCESS_MAP = { 'e4061881957f2be760ee7a24d78db94d75ceadb1b6f8b4070666c0e50ea18e65': 'legacy' }; // RetailMartLegacy!2026
+    const WHATSAPP_NUMBER = '918840235103';
+    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/mlgyronq';
+
+    function toggleModal(){
+        const o = document.getElementById('overlay');
+        o.classList.toggle('show');
+        if (o.classList.contains('show')) setTimeout(() => document.getElementById('code').focus(), 80);
+    }
+    async function sha256(text){
+        try { if (window.crypto && crypto.subtle){
+            const d = new TextEncoder().encode(text);
+            const h = await crypto.subtle.digest('SHA-256', d);
+            return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('');
+        }} catch(e){}
+        return sha256js(text);
+    }
+    function sha256js(ascii){
+        function rr(v,a){return (v>>>a)|(v<<(32-a));}
+        const mp=Math.pow,mw=mp(2,32);let result='';const words=[];
+        const bytes=unescape(encodeURIComponent(ascii));const bl=bytes.length*8;
+        let hash=sha256js.h=sha256js.h||[];const k=sha256js.k=sha256js.k||[];
+        let pc=k.length;const ic={};
+        for(let c=2;pc<64;c++){if(!ic[c]){for(let i=0;i<313;i+=c)ic[i]=c;hash[pc]=(mp(c,0.5)*mw)|0;k[pc++]=(mp(c,1/3)*mw)|0;}}
+        hash=hash.slice(0,8);let i;
+        for(i=0;i<bytes.length;i++)words[i>>2]|=bytes.charCodeAt(i)<<((3-i)%4)*8;
+        words[bytes.length>>2]|=0x80<<((3-bytes.length)%4)*8;words[((bytes.length+8>>6)<<4)+15]=bl;
+        for(let j=0;j<words.length;){const w=words.slice(j,j+=16);const oh=hash.slice(0);
+            for(i=0;i<64;i++){const w15=w[i-15],w2=w[i-2];const a=hash[0],e=hash[4];
+                const t1=hash[7]+(rr(e,6)^rr(e,11)^rr(e,25))+((e&hash[5])^((~e)&hash[6]))+k[i]+(w[i]=i<16?(w[i]|0):(w[i-16]+(rr(w15,7)^rr(w15,18)^(w15>>>3))+w[i-7]+(rr(w2,17)^rr(w2,19)^(w2>>>10)))|0);
+                const t2=(rr(a,2)^rr(a,13)^rr(a,22))+((a&hash[1])^(a&hash[2])^(hash[1]&hash[2]));
+                hash=[(t1+t2)|0].concat(hash);hash[4]=(hash[4]+t1)|0;}
+            for(i=0;i<8;i++)hash[i]=(hash[i]+oh[i])|0;}
+        for(i=0;i<8;i++)for(let j=3;j+1;j--){const b=(hash[i]>>(j*8))&255;result+=((b<16)?0:'')+b.toString(16);}
+        return result;
+    }
+    function getValid(){
+        try { const d=JSON.parse(localStorage.getItem('legacy_access')||'null');
+            if(!d) return false;
+            if(Date.now()-d.time > ACCESS_EXPIRY_DAYS*864e5){localStorage.removeItem('legacy_access');return false;}
+            return true;
+        } catch { return false; }
+    }
+    async function checkAccess(){
+        const code=document.getElementById('code').value.trim();
+        if(!code) return;
+        const st=document.getElementById('status');
+        const h=await sha256(code);
+        if(ACCESS_MAP[h]){
+            localStorage.setItem('legacy_access', JSON.stringify({time:Date.now()}));
+            st.textContent='Archive unlocked! (expires in '+ACCESS_EXPIRY_DAYS+' days)';
+            st.className='status ok';
+            unlockGate();
+            setTimeout(toggleModal, 1200);
+        } else {
+            st.textContent='Invalid access code';
+            st.className='status err';
+        }
+    }
+    function unlockGate(){
+        document.querySelectorAll('[data-gate]').forEach(el => el.classList.remove('locked'));
+        const b=document.getElementById('codeBtn');
+        if(b){ b.textContent='Unlocked'; b.classList.add('granted'); }
+    }
+    document.addEventListener('click', e => {
+        const c=e.target.closest('[data-gate]');
+        if(c && c.classList.contains('locked')){ e.preventDefault(); toggleModal(); }
+    });
+    function waLink(n,b){
+        let m="Hi Siraj, I'd like access to the legacy archive.";
+        if(n) m+=' I am '+n+'.';
+        if(b) m+=' (Batch '+b+')';
+        return 'https://wa.me/'+WHATSAPP_NUMBER+'?text='+encodeURIComponent(m);
+    }
+    async function submitRequest(){
+        const n=document.getElementById('rName').value.trim();
+        const e=document.getElementById('rEmail').value.trim();
+        const b=document.getElementById('rBatch').value.trim();
+        const st=document.getElementById('rStatus');
+        if(!n||!e){ st.textContent='Please enter your name and email'; st.className='status err'; return; }
+        st.textContent='Sending request…'; st.className='status';
+        const wa=waLink(n,b);
+        try{
+            const fd=new FormData();
+            fd.append('name',n); fd.append('email',e); fd.append('batch',b);
+            fd.append('_subject','Legacy Archive Access Request');
+            const r=await fetch(FORMSPREE_ENDPOINT,{method:'POST',headers:{'Accept':'application/json'},body:fd});
+            if(!r.ok) throw new Error('formspree');
+            st.innerHTML='Request sent! For instant access, <a href="'+wa+'" target="_blank" rel="noopener" style="color:#22c55e;font-weight:700">message on WhatsApp →</a>';
+            st.className='status ok';
+            document.getElementById('rName').value=''; document.getElementById('rEmail').value=''; document.getElementById('rBatch').value='';
+        }catch(x){
+            st.innerHTML="Couldn't send. Please <a href=\""+wa+"\" target=\"_blank\" rel=\"noopener\" style=\"color:#22c55e;font-weight:700\">request on WhatsApp →</a>";
+            st.className='status err';
+        }
+    }
+    document.addEventListener('keydown', e => {
+        if(e.key==='Escape'){ const o=document.getElementById('overlay'); if(o.classList.contains('show')) toggleModal(); }
+    });
+    if(getValid()) window.addEventListener('load', unlockGate);
+
     // animated counters
     function animateCounters(){
         document.querySelectorAll('[data-count]').forEach(el=>{
